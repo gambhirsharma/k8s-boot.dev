@@ -1,0 +1,30 @@
+# kubectl get svc web-service -o yaml > web-services.yaml.bak
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"web-service","namespace":"default"},"spec":{"ports":[{"port":80,"protocol":"TCP","targetPort":8080}],"selector":{"app":"synergychat-web"}}}
+  creationTimestamp: "2025-05-29T21:42:02Z"
+  name: web-service
+  namespace: default
+  resourceVersion: "38824"
+  uid: 80b0b429-0dc7-4a5d-8251-9df2f4f75f6a
+spec:
+  clusterIP: 10.110.75.106
+  clusterIPs:
+  - 10.110.75.106
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: synergychat-web
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
