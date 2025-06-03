@@ -1,0 +1,17 @@
+# check the ./update/k8s-*.yaml for the correct code
+# the other version didn't use the port number
+apiVersion: v1
+data:
+  API_DB_FILEPATH: /persist/db.json
+  API_PORT: "8080"
+  CRAWLER_BASE_URL: "http://crawler-service.crawler.svc.cluster.local"
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"API_DB_FILEPATH":"/persist/db.json","API_PORT":"8080"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"synergychat-api-configmap","namespace":"default"}}
+  creationTimestamp: "2025-05-28T23:41:17Z"
+  name: synergychat-api-configmap
+  namespace: default
+  resourceVersion: "155290"
+  uid: bb0e0838-f843-4ad2-8724-ad3a002dc25d

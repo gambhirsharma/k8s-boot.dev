@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"crawler-service","namespace":"default"},"spec":{"ports":[{"port":80,"protocol":"TCP","targetPort":8080}],"selector":{"app":"synergychat-crawler"}}}
+  creationTimestamp: "2025-05-30T11:56:04Z"
+  name: crawler-service
+  namespace: crawler
+  resourceVersion: "47583"
+  uid: 125e8fde-9dfd-45ea-9413-02dd53d6bc8a
+spec:
+  clusterIP: 10.103.71.81
+  clusterIPs:
+  - 10.103.71.81
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: synergychat-crawler
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
