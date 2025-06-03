@@ -1,7 +1,8 @@
-# check ch-07/ for update
 apiVersion: v1
 kind: ConfigMap
 metadata: 
   name: synergychat-api-configmap
 data: 
   API_PORT: "8080"
+  API_DB_FILEPATH: "/persist/db.json"
+  # API_DB_FILEPATH: "/var/lib/synergychat/api/db.json"
