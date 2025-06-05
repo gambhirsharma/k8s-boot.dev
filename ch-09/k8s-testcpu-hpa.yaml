@@ -1,0 +1,54 @@
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"autoscaling/v2","kind":"HorizontalPodAutoscaler","metadata":{"annotations":{},"creationTimestamp":"2025-06-04T17:56:14Z","name":"testcpu-hpa","namespace":"default","resourceVersion":"188090","uid":"bc2e6fbc-b484-48e0-ab60-f665443b69e6"},"spec":{"maxReplicas":4,"metrics":[{"resource":{"name":"cpu","target":{"averageUtilization":50,"type":"Utilization"}},"type":"Resource"}],"minReplicas":1,"scaleTargetRef":{"apiVersion":"apps/v1","kind":"Deployment","name":"synergychat-testcpu"}},"status":{"conditions":[{"lastTransitionTime":"2025-06-04T17:56:29Z","message":"the HPA controller was unable to get the target's current scale: deployments.apps \"testcpu\" not found","reason":"FailedGetScale","status":"False","type":"AbleToScale"}],"currentMetrics":null,"desiredReplicas":0}}
+  creationTimestamp: "2025-06-04T17:56:14Z"
+  name: testcpu-hpa
+  namespace: default
+  resourceVersion: "205064"
+  uid: bc2e6fbc-b484-48e0-ab60-f665443b69e6
+spec:
+  maxReplicas: 1
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 50
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: synergychat-testcpu
+status:
+  conditions:
+  - lastTransitionTime: "2025-06-04T20:40:54Z"
+    message: recent recommendations were higher than current one, applying the highest
+      recent recommendation
+    reason: ScaleDownStabilized
+    status: "True"
+    type: AbleToScale
+  - lastTransitionTime: "2025-06-05T00:50:34Z"
+    message: the HPA was able to successfully calculate a replica count from cpu resource
+      utilization (percentage of request)
+    reason: ValidMetricFound
+    status: "True"
+    type: ScalingActive
+  - lastTransitionTime: "2025-06-04T18:02:30Z"
+    message: the desired replica count is more than the maximum replica count
+    reason: TooManyReplicas
+    status: "True"
+    type: ScalingLimited
+  currentMetrics:
+  - resource:
+      current:
+        averageUtilization: 110
+        averageValue: 11m
+      name: cpu
+    type: Resource
+  currentReplicas: 4
+  desiredReplicas: 4
+  lastScaleTime: "2025-06-04T18:02:30Z"
