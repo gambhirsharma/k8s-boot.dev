@@ -1,0 +1,45 @@
+apiVersion: v1
+items:
+- apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"networking.k8s.io/v1","kind":"Ingress","metadata":{"annotations":{"nginx.ingress.kubernetes.io/rewrite-target":"/"},"name":"app-ingress","namespace":"default"},"spec":{"rules":[{"host":"synchat.internal","http":{"paths":[{"backend":{"service":{"name":"web-service","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}},{"host":"synchatapi.internal","http":{"paths":[{"backend":{"service":{"name":"api-service","port":{"number":80}}},"path":"/","pathType":"Prefix"}]}}]}}
+      nginx.ingress.kubernetes.io/rewrite-target: /
+    creationTimestamp: "2025-05-30T15:09:33Z"
+    generation: 1
+    name: app-ingress
+    namespace: default
+    resourceVersion: "185618"
+    uid: 414aa261-409c-4611-8cc4-c132ee3fd539
+  spec:
+    ingressClassName: nginx
+    rules:
+    - host: synchat.internal
+      http:
+        paths:
+        - backend:
+            service:
+              name: web-service
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+    - host: synchatapi.internal
+      http:
+        paths:
+        - backend:
+            service:
+              name: api-service
+              port:
+                number: 80
+          path: /
+          pathType: Prefix
+  status:
+    loadBalancer:
+      ingress:
+      - ip: 192.168.49.2
+kind: List
+metadata:
+  resourceVersion: ""

@@ -1,0 +1,254 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2025-06-03T01:37:14Z"
+    generateName: synergychat-crawler-85646dd776-
+    generation: 1
+    labels:
+      app: synergychat-crawler
+      pod-template-hash: 85646dd776
+    name: synergychat-crawler-85646dd776-hmdrd
+    namespace: crawler
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: synergychat-crawler-85646dd776
+      uid: f3bb02ee-a872-4af1-ba5c-95df1eb6a847
+    resourceVersion: "185589"
+    uid: d7426cec-77fb-4eea-b31a-294ae8caf49c
+  spec:
+    containers:
+    - env:
+      - name: CRAWLER_PORT
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_PORT
+            name: synergychat-crawler-configmap
+      - name: CRAWLER_KEYWORDS
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_KEYWORDS
+            name: synergychat-crawler-configmap
+      image: docker.io/bootdotdev/synergychat-crawler:latest
+      imagePullPolicy: Always
+      name: synergychat-crawler-1
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /cache
+        name: cache-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zf6cx
+        readOnly: true
+    - env:
+      - name: CRAWLER_PORT
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_PORT_2
+            name: synergychat-crawler-configmap
+      - name: CRAWLER_KEYWORDS
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_KEYWORDS
+            name: synergychat-crawler-configmap
+      - name: CRAWLER_DB_PATH
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_DB_PATH
+            name: synergychat-crawler-configmap
+      image: docker.io/bootdotdev/synergychat-crawler:latest
+      imagePullPolicy: Always
+      name: synergychat-crawler-2
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /cache
+        name: cache-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zf6cx
+        readOnly: true
+    - env:
+      - name: CRAWLER_PORT
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_PORT_3
+            name: synergychat-crawler-configmap
+      - name: CRAWLER_KEYWORDS
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_KEYWORDS
+            name: synergychat-crawler-configmap
+      - name: CRAWLER_DB_PATH
+        valueFrom:
+          configMapKeyRef:
+            key: CRAWLER_DB_PATH
+            name: synergychat-crawler-configmap
+      image: docker.io/bootdotdev/synergychat-crawler:latest
+      imagePullPolicy: Always
+      name: synergychat-crawler-3
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /cache
+        name: cache-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zf6cx
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - emptyDir: {}
+      name: cache-volume
+    - name: kube-api-access-zf6cx
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-04T17:03:38Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-03T01:37:14Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-04T17:03:38Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-04T17:03:38Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-03T01:37:14Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://9273c044ee23d32cca15c8fb5401483eaa178de4c724fea0e56a18e790c485d9
+      image: bootdotdev/synergychat-crawler:latest
+      imageID: docker-pullable://bootdotdev/synergychat-crawler@sha256:cac0784df61ac7fd580220218ecf87b1cec08f84e63236d4ed1d7594771644e3
+      lastState:
+        terminated:
+          containerID: docker://a80131ce40f00b9dbbe901c797cb1240d145cdf20988890b21e5159181f93d28
+          exitCode: 2
+          finishedAt: "2025-06-04T17:02:37Z"
+          reason: Error
+          startedAt: "2025-06-04T13:48:00Z"
+      name: synergychat-crawler-1
+      ready: true
+      resources: {}
+      restartCount: 3
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-04T17:03:07Z"
+      volumeMounts:
+      - mountPath: /cache
+        name: cache-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zf6cx
+        readOnly: true
+        recursiveReadOnly: Disabled
+    - containerID: docker://3330a7b325aa0fb7c64c5dac37c7b6be64d200a6f3f71a28c5609bbb0ff82c1b
+      image: bootdotdev/synergychat-crawler:latest
+      imageID: docker-pullable://bootdotdev/synergychat-crawler@sha256:cac0784df61ac7fd580220218ecf87b1cec08f84e63236d4ed1d7594771644e3
+      lastState:
+        terminated:
+          containerID: docker://30ef50237a0b29fe4b548594fad7136ff539d4693b9e20a0634bddf15a1da107
+          exitCode: 2
+          finishedAt: "2025-06-04T17:02:37Z"
+          reason: Error
+          startedAt: "2025-06-04T13:48:03Z"
+      name: synergychat-crawler-2
+      ready: true
+      resources: {}
+      restartCount: 3
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-04T17:03:36Z"
+      volumeMounts:
+      - mountPath: /cache
+        name: cache-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zf6cx
+        readOnly: true
+        recursiveReadOnly: Disabled
+    - containerID: docker://e483340b7be32a3ac9ac3e964f92aa19e2cfc58117fb2b7f655de7d93a4278db
+      image: bootdotdev/synergychat-crawler:latest
+      imageID: docker-pullable://bootdotdev/synergychat-crawler@sha256:cac0784df61ac7fd580220218ecf87b1cec08f84e63236d4ed1d7594771644e3
+      lastState:
+        terminated:
+          containerID: docker://58734ca294b217a06cdd10727084e8f3b4ec57adec88220deda526ff88e9bac8
+          exitCode: 2
+          finishedAt: "2025-06-04T17:02:36Z"
+          reason: Error
+          startedAt: "2025-06-04T13:48:11Z"
+      name: synergychat-crawler-3
+      ready: true
+      resources: {}
+      restartCount: 3
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-04T17:03:38Z"
+      volumeMounts:
+      - mountPath: /cache
+        name: cache-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-zf6cx
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.1.104
+    podIPs:
+    - ip: 10.244.1.104
+    qosClass: BestEffort
+    startTime: "2025-06-03T01:37:14Z"
+kind: List
+metadata:
+  resourceVersion: ""

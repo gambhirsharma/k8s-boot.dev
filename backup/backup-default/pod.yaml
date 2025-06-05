@@ -1,0 +1,534 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-06-05T02:53:07+02:00"
+    creationTimestamp: "2025-06-05T00:53:07Z"
+    generateName: synergychat-api-bc5cb4589-
+    generation: 1
+    labels:
+      app: synergychat-api
+      pod-template-hash: bc5cb4589
+    name: synergychat-api-bc5cb4589-c7ljj
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: synergychat-api-bc5cb4589
+      uid: 3ddf5495-f948-48de-a62f-c8ee5ccc5f0e
+    resourceVersion: "205311"
+    uid: 96a0a47d-43ba-40cd-8b70-e1b9c8483e80
+  spec:
+    containers:
+    - envFrom:
+      - configMapRef:
+          name: synergychat-api-configmap
+      image: docker.io/bootdotdev/synergychat-api:latest
+      imagePullPolicy: Always
+      name: synergychat-api
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /persist
+        name: synergychat-api-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f9lwd
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: synergychat-api-volume
+      persistentVolumeClaim:
+        claimName: synergychat-api-pvc
+    - name: kube-api-access-f9lwd
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://4eaf5d2d3245bdfc80e0e82fca6fa8b51b1da1538dfbfe5bf01edc1b866b5910
+      image: bootdotdev/synergychat-api:latest
+      imageID: docker-pullable://bootdotdev/synergychat-api@sha256:107386436292fb9d7e8a144b430f417a55c9a72336e260e6293e321225a3b1b0
+      lastState: {}
+      name: synergychat-api
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-05T00:53:11Z"
+      volumeMounts:
+      - mountPath: /persist
+        name: synergychat-api-volume
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-f9lwd
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.1.115
+    podIPs:
+    - ip: 10.244.1.115
+    qosClass: BestEffort
+    startTime: "2025-06-05T00:53:07Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-06-05T02:53:07+02:00"
+    creationTimestamp: "2025-06-05T00:53:07Z"
+    generateName: synergychat-testcpu-65bf864cd5-
+    generation: 1
+    labels:
+      app: synergychat-testcpu
+      pod-template-hash: 65bf864cd5
+    name: synergychat-testcpu-65bf864cd5-vsjx8
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: synergychat-testcpu-65bf864cd5
+      uid: d5c30057-3781-4051-bfd4-00163e3e6ddf
+    resourceVersion: "205372"
+    uid: fd34e813-6559-40a9-8a52-d79107a70531
+  spec:
+    containers:
+    - image: bootdotdev/synergychat-testcpu:latest
+      imagePullPolicy: Always
+      name: synergychat-testcpu
+      resources:
+        limits:
+          cpu: 10m
+        requests:
+          cpu: 10m
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-8tbjh
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-8tbjh
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:23Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:23Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:23Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 10m
+      containerID: docker://d46d52ce245a79007f16eb5905dc598ccf62854da93c4ecd8ede49fd7e0000f7
+      image: bootdotdev/synergychat-testcpu:latest
+      imageID: docker-pullable://bootdotdev/synergychat-testcpu@sha256:85c7ac9bc8595514ab6e60189952a88c2e273b5b50bf2d7ea344459395e032d8
+      lastState: {}
+      name: synergychat-testcpu
+      ready: true
+      resources:
+        limits:
+          cpu: 10m
+        requests:
+          cpu: 10m
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-05T00:53:18Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-8tbjh
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.1.118
+    podIPs:
+    - ip: 10.244.1.118
+    qosClass: Burstable
+    startTime: "2025-06-05T00:53:07Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-06-05T02:53:07+02:00"
+    creationTimestamp: "2025-06-05T00:53:07Z"
+    generateName: synergychat-testram-76dfbdd744-
+    generation: 1
+    labels:
+      app: synergychat-testram
+      pod-template-hash: 76dfbdd744
+    name: synergychat-testram-76dfbdd744-w6fq4
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: synergychat-testram-76dfbdd744
+      uid: 6a04d85e-922f-4843-b0b3-38a9d773ee0a
+    resourceVersion: "205319"
+    uid: ceda8533-f3f4-496c-9317-404d0bd7059b
+  spec:
+    containers:
+    - env:
+      - name: MEGABYTES
+        value: "10"
+      image: bootdotdev/synergychat-testram:latest
+      imagePullPolicy: Always
+      name: synergychat-testram
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-wnnms
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-wnnms
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - allocatedResources:
+        cpu: 100m
+        memory: 256Mi
+      containerID: docker://20d2548bba33fce9461ef9c444e61712e20c6a217d2fa01c3d320da61767d56c
+      image: bootdotdev/synergychat-testram:latest
+      imageID: docker-pullable://bootdotdev/synergychat-testram@sha256:7b42d76850ce3df8ddbb0602700a44a1703d2d755f9c467cd4b13a0e0942028d
+      lastState: {}
+      name: synergychat-testram
+      ready: true
+      resources:
+        limits:
+          cpu: 100m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 256Mi
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-05T00:53:12Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-wnnms
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.1.117
+    podIPs:
+    - ip: 10.244.1.117
+    qosClass: Guaranteed
+    startTime: "2025-06-05T00:53:07Z"
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/restartedAt: "2025-06-05T02:53:07+02:00"
+    creationTimestamp: "2025-06-05T00:53:07Z"
+    generateName: synergychat-web-7d87c47659-
+    generation: 1
+    labels:
+      app: synergychat-web
+      pod-template-hash: 7d87c47659
+    name: synergychat-web-7d87c47659-45z7l
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: synergychat-web-7d87c47659
+      uid: 67fa2bd8-4a55-46d5-bbea-54a2dc97ba44
+    resourceVersion: "205310"
+    uid: ce1cb68e-94a8-4192-bd4b-624ce4ada2fe
+  spec:
+    containers:
+    - envFrom:
+      - configMapRef:
+          name: synergychat-web-config
+      image: docker.io/bootdotdev/synergychat-web:latest
+      imagePullPolicy: Always
+      name: synergychat-web
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-gj8bw
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: minikube
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: kube-api-access-gj8bw
+      projected:
+        defaultMode: 420
+        sources:
+        - serviceAccountToken:
+            expirationSeconds: 3607
+            path: token
+        - configMap:
+            items:
+            - key: ca.crt
+              path: ca.crt
+            name: kube-root-ca.crt
+        - downwardAPI:
+            items:
+            - fieldRef:
+                apiVersion: v1
+                fieldPath: metadata.namespace
+              path: namespace
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: PodReadyToStartContainers
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:16Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2025-06-05T00:53:07Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: docker://95ef84f40f1238fa006c4743fda0cbc2bdf78a4f19ec6651895a273665898c59
+      image: bootdotdev/synergychat-web:latest
+      imageID: docker-pullable://bootdotdev/synergychat-web@sha256:ee87876bbcf5a5ba79d0617a1412a88328344a0b9b64f763cfbfcf676bf23508
+      lastState: {}
+      name: synergychat-web
+      ready: true
+      resources: {}
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2025-06-05T00:53:09Z"
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: kube-api-access-gj8bw
+        readOnly: true
+        recursiveReadOnly: Disabled
+    hostIP: 192.168.49.2
+    hostIPs:
+    - ip: 192.168.49.2
+    phase: Running
+    podIP: 10.244.1.116
+    podIPs:
+    - ip: 10.244.1.116
+    qosClass: BestEffort
+    startTime: "2025-06-05T00:53:07Z"
+kind: List
+metadata:
+  resourceVersion: ""

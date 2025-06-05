@@ -1,0 +1,37 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"PersistentVolumeClaim","metadata":{"annotations":{},"name":"synergychat-api-pvc","namespace":"default"},"spec":{"accessModes":["ReadWriteOnce"],"resources":{"requests":{"storage":"1Gi"}}}}
+      pv.kubernetes.io/bind-completed: "yes"
+      pv.kubernetes.io/bound-by-controller: "yes"
+      volume.beta.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath
+      volume.kubernetes.io/storage-provisioner: k8s.io/minikube-hostpath
+    creationTimestamp: "2025-06-02T23:27:53Z"
+    finalizers:
+    - kubernetes.io/pvc-protection
+    name: synergychat-api-pvc
+    namespace: default
+    resourceVersion: "152586"
+    uid: b0656529-1777-43ab-b521-3b2866330d47
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
+    volumeName: pvc-b0656529-1777-43ab-b521-3b2866330d47
+  status:
+    accessModes:
+    - ReadWriteOnce
+    capacity:
+      storage: 1Gi
+    phase: Bound
+kind: List
+metadata:
+  resourceVersion: ""

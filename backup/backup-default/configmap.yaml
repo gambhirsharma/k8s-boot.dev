@@ -1,0 +1,84 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIIDBjCCAe6gAwIBAgIBATANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwptaW5p
+      a3ViZUNBMB4XDTI1MDUyNDE1NTkyMVoXDTM1MDUyMzE1NTkyMVowFTETMBEGA1UE
+      AxMKbWluaWt1YmVDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAPBj
+      kPmjhsqWnmG1d1IVpRkIYOWw94pddTFZlmszSXWf7Dnj+pL3ur8A41w3a4jgVumE
+      y9kIYy4iGiVfQdSQfYfavovajDtbohZjS9M61EwdmLFkQBekgKHr+E6Dwy6tg2K+
+      1BXoET89PkhT+0m+IU+dl14AvxiyqeP72AwmWKuTxyBLdWWdDDk3hRZ1oNfvdZZf
+      2On7QXrUvTbdiLlm6AzLzLwmkeMXZh1rcf6cg7vSSHFa2I2JILM4UN88augK3R9Y
+      yzFqd4nEL4uvA9/t5QX6gKvJ/RdAfFt8uNZqfjsAzhQ3LKmZPvaujps+Sg8KctUh
+      U9efQCmRHfOh2X85Lx0CAwEAAaNhMF8wDgYDVR0PAQH/BAQDAgKkMB0GA1UdJQQW
+      MBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MB0GA1UdDgQW
+      BBQYN/2Qa5MWX85Q+8y9AFUUEQBgazANBgkqhkiG9w0BAQsFAAOCAQEALqeCkv+0
+      lLtBoOeXLSVVee0mEu9dB0dsFi82H2RJ8vRV9xrW5UEYDNs7Xm4TcaQNN6euED7x
+      sqN6i4LP7hdZ2N45CkUmuWH1gZGeTOyol4KTlW8sPEtcG8XPPMSEKKNR9iLRzr2b
+      ISiMZAgkCvNAGWgev0vE/tSyCPsQvBGdi9wZwGWx6m3kmkqF/imaD+GGQsJdYJjW
+      rFap6aY0hDCXJDriUhPFWDyr/vfiAwLLftOKTe3pJNChxWRsMX47RXTelWy7/F0+
+      1IhM3pJgq6HTUK7hkeuf13QnvVOW9gcMjc2gDf5RRnRa+DIaPkJkmwc5TU0AMJ5P
+      uUsIHgZ7i5abQg==
+      -----END CERTIFICATE-----
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubernetes.io/description: Contains a CA bundle that can be used to verify the
+        kube-apiserver when using internal endpoints such as the internal service
+        IP or kubernetes.default.svc. No other usage is guaranteed across distributions
+        of Kubernetes clusters.
+    creationTimestamp: "2025-05-26T17:15:36Z"
+    name: kube-root-ca.crt
+    namespace: default
+    resourceVersion: "334"
+    uid: 88e310d1-2445-48eb-a36a-c3833f3bc9b0
+- apiVersion: v1
+  data:
+    API_DB_FILEPATH: /persist/db.json
+    API_PORT: "8080"
+    CRAWLER_BASE_URL: http://crawler-service.crawler.svc.cluster.local
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"API_DB_FILEPATH":"/persist/db.json","API_PORT":"8080","CRAWLER_BASE_URL":"http://crawler-service.crawler.svc.cluster.local"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2025-05-28T23:41:17Z","name":"synergychat-api-configmap","namespace":"default","resourceVersion":"160933","uid":"bb0e0838-f843-4ad2-8724-ad3a002dc25d"}}
+    creationTimestamp: "2025-05-28T23:41:17Z"
+    name: synergychat-api-configmap
+    namespace: default
+    resourceVersion: "161632"
+    uid: bb0e0838-f843-4ad2-8724-ad3a002dc25d
+- apiVersion: v1
+  data:
+    MEGABYTES: "200"
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"MEGABYTES":"200"},"kind":"ConfigMap","metadata":{"annotations":{},"name":"synergychat-testram-configmap","namespace":"default"}}
+    creationTimestamp: "2025-06-04T00:41:40Z"
+    name: synergychat-testram-configmap
+    namespace: default
+    resourceVersion: "179467"
+    uid: cba9e8de-6247-45ea-9004-e6b4ae7442ed
+- apiVersion: v1
+  data:
+    API_URL: http://synchatapi.internal
+    WEB_PORT: "8080"
+  kind: ConfigMap
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","data":{"API_URL":"http://synchatapi.internal","WEB_PORT":"8080"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"app":"synergychat","component":"web"},"name":"synergychat-web-config","namespace":"default"}}
+    creationTimestamp: "2025-06-01T06:45:22Z"
+    labels:
+      app: synergychat
+      component: web
+    name: synergychat-web-config
+    namespace: default
+    resourceVersion: "77678"
+    uid: 4fe813cf-f983-4ce6-aa02-4007449c25b5
+kind: List
+metadata:
+  resourceVersion: ""
